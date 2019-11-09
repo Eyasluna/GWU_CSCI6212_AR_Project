@@ -99,7 +99,7 @@ class ViewController: UIViewController {
             return
         }
         if  lines.isEmpty {
-            InfoL.text = "start measurement"
+            InfoL.text = "Start Measuring"
             restB.titleLabel?.text = ""
         }
         if isMeasuring {
@@ -113,7 +113,7 @@ class ViewController: UIViewController {
             currentLine?.update(to: vectorEnd)
             InfoL.text = currentLine?.distance(to: vectorEnd) ?? "..."
             
-            print("moving..")
+            print("Moving..")
         }
     }
     
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
             reset()
             scanWorld()
             targetIM.image = UIImage(named: "GreenTarget")
-            restB.titleLabel?.text = "end measurement"
+            restB.titleLabel?.text = "Finished"
         }else{
             
             if canMeasure {
@@ -383,7 +383,7 @@ class ViewController: UIViewController {
         view.buttonTitleColor = UIColor.white
         //view.buttonLayerBorderColor = UIColor.blue
         
-        let cancel = AEAlertAction(title: "input", style: .Cancel) { (action) in
+        let cancel = AEAlertAction(title: "Input", style: .Cancel) { (action) in
             view.close()
             
             self.clickInputBtn()
@@ -413,11 +413,11 @@ class ViewController: UIViewController {
             self.isMeasuring = false
             self.canMeasure = false
             self.showPicBegin()
-            print("cancel 点击")
+            print("Cancel")
         }
         view.addAction(action: cancel)
         
-        let confirm = AEAlertAction(title: "remeasurement", style: .Default) { (action) in
+        let confirm = AEAlertAction(title: "Re-measure", style: .Default) { (action) in
             view.close()
 //            self.reset()
             self.isMeasuring = false
@@ -426,7 +426,7 @@ class ViewController: UIViewController {
         }
         view.addAction(action: confirm)
         
-        let other = AEAlertAction(title: "input", style: .Default) { (action) in
+        let other = AEAlertAction(title: "Input", style: .Default) { (action) in
             view.close()
             print("Other")
             self.clickInputBtn()
@@ -443,9 +443,9 @@ class ViewController: UIViewController {
         var inputText:UITextField = UITextField();
         inputText.keyboardType = UIKeyboardType.numberPad
         
-        let msgAlertCtr = UIAlertController.init(title:"input",message:"please enter the distance between you and wall,demo:1.2",preferredStyle:.alert)
+        let msgAlertCtr = UIAlertController.init(title:"Input:",message:"Please enter the distance between you and wall",preferredStyle:.alert)
         
-        let ok = UIAlertAction.init(title:"confirm",style:.default){(action:UIAlertAction)->()in
+        let ok = UIAlertAction.init(title:"Confirm",style:.default){(action:UIAlertAction)->()in
             
             if((inputText.text) != ""){
                 self.reset()
@@ -457,9 +457,9 @@ class ViewController: UIViewController {
             }
         }
         
-        let cancel = UIAlertAction.init(title:"cancel",style:.cancel){(action:UIAlertAction)->()in
+        let cancel = UIAlertAction.init(title:"Cancel",style:.cancel){(action:UIAlertAction)->()in
             
-            print("cancel input")
+            print("Cancel")
             
         }
         
@@ -475,7 +475,7 @@ class ViewController: UIViewController {
             
             inputText = textField
             
-            inputText.placeholder = "input data"
+            inputText.placeholder = "Input"
             
         }
         
@@ -524,7 +524,7 @@ extension ViewController:ARSCNViewDelegate{
     
     func sessionWasInterrupted(_ session: ARSession) {
         if canMeasure {
-            InfoL.text = "break off"
+            InfoL.text = "Stoped"
         }
         
     }
